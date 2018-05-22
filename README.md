@@ -15,8 +15,6 @@ npm test
 
 ## bumo-encryption  Usage
 
-### Get private key, public key and hash address.
-
 ```js
 'use strict';
 
@@ -27,7 +25,7 @@ const signature = encryption.signature;
 const keystore = encryption.keystore;
 
 let kp = new KeyPair();
-// Get private key, public key and hash address.
+// Get encPrivateKey, encPublicKey, address
 let encPrivateKey = kp.getEncPrivateKey();
 let encPublicKey = kp.getEncPublicKey();
 let address = kp.getAddress();
