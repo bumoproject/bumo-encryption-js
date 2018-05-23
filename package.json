@@ -1,12 +1,12 @@
 {
   "name": "bumo-encryption",
-  "version": "0.1.3",
+  "version": "1.0.1",
   "description": "bumo-encryption",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "MartinLee",
+  "author": "BUMO",
   "license": "ISC",
   "dependencies": {
     "crypto-js": "^3.1.9-1",
@@ -19,16 +19,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martinlee159/bumo-demo.git"
+    "url": ""
   },
   "keywords": [
     "bumo",
     "bumo-encryption"
   ],
   "bugs": {
-    "url": "https://github.com/martinlee159/bumo-demo/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/martinlee159/bumo-demo#readme",
+  "homepage": "",
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0"

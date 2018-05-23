@@ -62,4 +62,9 @@ describe('Test bumo-encryption', function() {
     });
   });
 
+  it('test: checkAddress', function() {
+    var result = KeyPair.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq');
+    result.should.equal(true);
+  });
+
 });
