@@ -1,14 +1,14 @@
 'use strict';
 
-var should = require('chai').should();
-var encryption = require('../lib');
+require('chai').should();
+const encryption = require('../lib');
 
-var KeyPair = encryption.keypair;
-var signature = encryption.signature;
-var keystore = encryption.keystore;
+const KeyPair = encryption.keypair;
+const signature = encryption.signature;
+const keystore = encryption.keystore;
 
 describe('Test bumo-encryption', function() {
-  var kp = KeyPair.getKeyPair();
+  const kp = KeyPair.getKeyPair();
 
   it('test: getKeyPair', function() {
     kp.encPrivateKey.should.be.a('string');
@@ -18,33 +18,33 @@ describe('Test bumo-encryption', function() {
     kp.should.have.property('encPrivateKey').with.lengthOf(56);
     kp.should.have.property('encPublicKey').with.lengthOf(76);
     kp.should.have.property('address').with.lengthOf(36);
-    var checkPrivateKey = KeyPair.checkEncPrivateKey(kp.encPrivateKey)
-    var checkPublickKey = KeyPair.checkEncPublicKey(kp.encPublicKey)
-    var checkAddress = KeyPair.checkAddress(kp.address)
+    const checkPrivateKey = KeyPair.checkEncPrivateKey(kp.encPrivateKey);
+    const checkPublickKey = KeyPair.checkEncPublicKey(kp.encPublicKey);
+    const checkAddress = KeyPair.checkAddress(kp.address);
     checkPrivateKey.should.equal(true);
     checkPublickKey.should.equal(true);
     checkAddress.should.equal(true);
   });
 
   it('test: getEncPublicKey', function() {
-    var encPublicKey = KeyPair.getEncPublicKey(kp.encPrivateKey);
-    var checkPrivateKey = KeyPair.checkEncPublicKey(encPublicKey);
+    const encPublicKey = KeyPair.getEncPublicKey(kp.encPrivateKey);
+    const checkPrivateKey = KeyPair.checkEncPublicKey(encPublicKey);
     checkPrivateKey.should.equal(true);
   });
 
   it('test: getAddress', function() {
-    var encPublicKey = KeyPair.getEncPublicKey(kp.encPrivateKey);
-    var address = KeyPair.getAddress(encPublicKey);
-    var checkAddress = KeyPair.checkAddress(address);
+    const encPublicKey = KeyPair.getEncPublicKey(kp.encPrivateKey);
+    const address = KeyPair.getAddress(encPublicKey);
+    const checkAddress = KeyPair.checkAddress(address);
     checkAddress.should.equal(true);
   });
 
   it('test: signature sign and verify', function() {
-    var sign = signature.sign('test', kp.encPrivateKey);
-    var verify = signature.verify('test', sign, kp.encPublicKey);
+    const sign = signature.sign('test', kp.encPrivateKey);
+    const verify = signature.verify('test', sign, kp.encPublicKey);
 
-    var signII = signature.sign('test', kp.encPrivateKey);
-    var verifyII = signature.verify('test2', signII, kp.encPublicKey);
+    const signII = signature.sign('test', kp.encPrivateKey);
+    const verifyII = signature.verify('test2', signII, kp.encPublicKey);
     sign.should.be.a('string');
     sign.should.have.lengthOf(128);
     verify.should.be.a('boolean');
@@ -52,18 +52,29 @@ describe('Test bumo-encryption', function() {
     verifyII.should.equal(false);
   });
 
-  it('test: keystore', function() {
-    keystore.encrypt(kp.encPrivateKey, 'test', function(encData) {
-      keystore.decrypt(encData, 'test', function(descData) {
-        // get encPrivateKey
-        descData.should.be.a('string');
-        descData.should.equal(kp.encPrivateKey);
-      });
-    });
+  it('test: keystore encrypt', function() {
+    let result = keystore.encrypt('privbse57qwJ9itsVt45f1sFSfQjSKGMY8yscjFSgWhpju4uoa4BQAoL', '123456');
+    result.should.be.a('string');
+    result = JSON.parse(result);
+    result.should.have.property('address');
+    result.should.have.property('aesctr_iv');
+    result.should.have.property('cypher_text');
+    result.should.have.property('scrypt_params');
+    result.should.have.property('version');
+  });
+
+  it('test: keystore decrypt', function() {
+    const result = keystore.encrypt('privbse57qwJ9itsVt45f1sFSfQjSKGMY8yscjFSgWhpju4uoa4BQAoL', '123456');
+    let decrypt = keystore.decrypt(result, '123456');
+    decrypt.should.be.a('string');
+    decrypt.should.equal('privbse57qwJ9itsVt45f1sFSfQjSKGMY8yscjFSgWhpju4uoa4BQAoL');
+    decrypt = keystore.decrypt(result, '1234567');
+    decrypt.should.be.a('string');
+    decrypt.should.equal('');
   });
 
   it('test: checkAddress', function() {
-    var result = KeyPair.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq');
+    const result = KeyPair.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq');
     result.should.equal(true);
   });
 

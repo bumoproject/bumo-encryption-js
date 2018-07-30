@@ -60,12 +60,9 @@ let sign = signature.sign('test', encPrivateKey);
 let verify = signature.verify('test', sign, encPublicKey);
 
 // keystore
-keystore.encrypt(encPrivateKey, 'test', function(encData) {
-  keystore.decrypt(encData, 'test', function(descData) {
-    console.log(descData);
-  });
-});
+let encData = keystore.encrypt(encPrivateKey, 'test');
 
+let descData = keystore.decrypt(encData, 'test');
 ```
 
 ## License

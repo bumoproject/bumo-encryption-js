@@ -1,6 +1,6 @@
 {
   "name": "bumo-encryption",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "bumo-encryption",
   "main": "lib/index.js",
   "scripts": {
@@ -9,9 +9,11 @@
   "author": "BUMO",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^3.1.9-1",
+    "aes-js": "^3.1.1",
     "is-type-of": "^1.2.0",
-    "sjcl": "^1.0.7"
+    "scrypt": "^6.0.3",
+    "sjcl": "^1.0.7",
+    "tweetnacl": "^1.0.0"
   },
   "directories": {
     "lib": "lib",
