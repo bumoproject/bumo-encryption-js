@@ -28,8 +28,8 @@ describe('Test bumo-encryption', function() {
 
   it('test: getEncPublicKey', function() {
     const encPublicKey = KeyPair.getEncPublicKey(kp.encPrivateKey);
-    const checkPrivateKey = KeyPair.checkEncPublicKey(encPublicKey);
-    checkPrivateKey.should.equal(true);
+    const encPublicKeyStatus = KeyPair.checkEncPublicKey(encPublicKey);
+    encPublicKeyStatus.should.equal(true);
   });
 
   it('test: getAddress', function() {
@@ -73,9 +73,29 @@ describe('Test bumo-encryption', function() {
     decrypt.should.equal('');
   });
 
+  it('test: checkEncPrivatekey', function() {
+    let data = KeyPair.checkEncPrivateKey('privbzEnfKU8GGN5tHWRd2CevoWbTw1QccLFGgdujgFQwiPjzwBLqL4f');
+    data.should.be.a('boolean');
+    data.should.equal(true);
+    data = KeyPair.checkEncPrivateKey('');
+    data.should.be.a('boolean');
+    data.should.equal(false);
+  });
+
+  it('test: checkEncPublicKey', function() {
+    let data = KeyPair.checkEncPublicKey('b001ea89a53060b257d34cdc25f064e53ae0fe3ce053b18ec71ba8dc2abe12cb059826888fa0');
+    data.should.be.a('boolean');
+    data.should.equal(true);
+    data = KeyPair.checkEncPublicKey('');
+    data.should.be.a('boolean');
+    data.should.equal(false);
+  });
+
   it('test: checkAddress', function() {
     const result = KeyPair.checkAddress('buQgE36mydaWh7k4UVdLy5cfBLiPDSVhUoPq');
     result.should.equal(true);
   });
+
+
 
 });
