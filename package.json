@@ -34,5 +34,13 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bumoproject/bumo-encryption-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bumoproject/bumo-encryption-js/issues"
+  },
+  "homepage": "https://github.com/bumoproject/bumo-encryption-js#readme"
 }
