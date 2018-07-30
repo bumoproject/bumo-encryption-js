@@ -1,7 +1,7 @@
 bumo-encryption
 =======
 
-bumo-encryption Sub module of [bumo-sdk-js]().
+bumo-encryption Sub module of [bumo-sdk-js](https://github.com/bumoproject/bumo-sdk-nodejs).
 
 ## bumo-encryption  Installation
 ```
