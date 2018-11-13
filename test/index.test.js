@@ -2,6 +2,7 @@
 
 require('chai').should();
 const encryption = require('../lib');
+const util = require('../lib/util');
 
 const KeyPair = encryption.keypair;
 const signature = encryption.signature;
@@ -9,6 +10,16 @@ const keystore = encryption.keystore;
 
 describe('Test bumo-encryption', function() {
   const kp = KeyPair.getKeyPair();
+
+  it('test: sign', function() {
+    let privateKey = "privbz5r4XbBQ6Cwniw4E15XZTnfJnfDzmxLTtnDerMhoJywJEWB4Gkz";
+    let transactionBlob = "0a24627551656357594648656d64483873396254597357756b3662766473776e4a4a61435433100118a08d0620e807321a7472616e73616374696f6e20637265617465206163636f756e743a5708041224627551656357594648656d64483873396254597357756b3662766473776e4a4a614354331a1066697273745365746d657461646174613a1b0a0a666972745365744b6579120d666972737453657456616c7565";
+    let transactionBytes = util.bytesFromHex(transactionBlob);
+    const signData = signature.sign(transactionBytes, privateKey);
+    const publicKey = KeyPair.getEncPublicKey(privateKey);
+    console.log(signData);
+    console.log(publicKey);
+  });
 
   it('test: getKeyPair', function() {
     kp.encPrivateKey.should.be.a('string');
