@@ -30,13 +30,6 @@ let encPrivateKey = kp.getEncPrivateKey();
 let encPublicKey = kp.getEncPublicKey();
 let address = kp.getAddress();
 
-
-console.log('============= bof: ==============');
-console.log(`EncPrivateKey is : ${encPrivateKey}`);
-console.log(`EncPublicKey is : ${encPublicKey}`);
-console.log(`Address hash is : ${address}`);
-console.log('============= eof: ==============');
-
 // Get keypair
 let keypair = KeyPair.getKeyPair();
 

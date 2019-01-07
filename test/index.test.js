@@ -2,8 +2,6 @@
 
 require('chai').should();
 const encryption = require('../lib');
-const util = require('../lib/util');
-
 const KeyPair = encryption.keypair;
 const signature = encryption.signature;
 const keystore = encryption.keystore;
