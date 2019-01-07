@@ -59,10 +59,18 @@ KeyPair.checkAddress(address);
 let sign = signature.sign('test', encPrivateKey);
 let verify = signature.verify('test', sign, encPublicKey);
 
-// keystore
-let encData = keystore.encrypt(encPrivateKey, 'test');
+// encrypt keystore and decrypt
+keystore.encrypt(privateKey, password).then(function (encryptData) {
+  console.log(encryptData)
+}).catch(function (err) {
+  console.log(err);
+});
 
-let descData = keystore.decrypt(encData, 'test');
+keystore.decrypt(encryptData, password).then(function (encryptData) {
+  console.log(encryptData)
+}).catch(function (err) {
+  console.log(err);
+});
 ```
 
 ## License
