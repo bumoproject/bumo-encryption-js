@@ -10,8 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "aes-js": "^3.1.1",
+    "hash.js": "^1.1.7",
     "is-type-of": "^1.2.0",
-    "scrypt": "^6.0.3",
+    "scryptsy": "^2.0.0",
     "sjcl": "^1.0.7",
     "tweetnacl": "^1.0.0"
   },
